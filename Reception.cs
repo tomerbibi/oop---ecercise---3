@@ -14,7 +14,7 @@ namespace Hotel
         private static int _numberOfGuests;
         private static Room[] _rooms = new Room[_numberOfRooms];
         private static RoomService _roomService = new RoomService();
-        public static void CheckIn(Guest g)
+         public static Room CheckIn(Guest g)
         {
             _numberOfGuests++;
             for (int i = 0; i < _numberOfRooms; i++)
@@ -22,10 +22,11 @@ namespace Hotel
                 if (_rooms[i].GetGuest() == null)
                 {
                     _rooms[i].SetGuest(g);
-                    break;
+                    return _rooms[i];
                 }
             }
             Console.WriteLine("sorry we dont have any available room");
+            return null;
         }
         public static void CheckOut(Room r)
         {
